@@ -50,7 +50,7 @@ while running:
 
             
 
-            bullet = Bullet(shooter.s0, v*2)
+            bullet = Bullet(shooter.s0, v)
 
             bullet_list.append(bullet)
             
@@ -76,7 +76,7 @@ while running:
             bullet_list.remove(bullet)
         elif bullet.collision(target):
             bullet_list.remove(bullet)
-            bullet.points += 1
+            
 
             
     

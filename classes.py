@@ -10,6 +10,7 @@ class Shooter(pygame.sprite.Sprite):
         self.image = pygame.Surface((50, 50))
         self.image.fill((255, 0, 0))
         self.rect = pygame.Rect(self.s0[0], self.s0[1], 50, 50)
+        self.points = 0
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -29,25 +30,20 @@ class Bullet(pygame.sprite.Sprite):
         self.image = pygame.Surface((10, 10))
         self.image.fill((0, 0, 255))
         self.rect = pygame.Rect(self.s0[0], self.s0[1], 10, 10)
-        self.points = 0
         
 
 
-    def update(self, celestial_body_1, celestial_body_2):
+    def update(self, list_celestials):
 
-        #Gravitational force
-        distance = np.linalg.norm(celestial_body_1.s0 - self.s0)
-        gravtional_direction = (celestial_body_1.s0 - self.s0) / distance
-        gravtional_force_1 = (celestial_body_1.constant / distance**2) * gravtional_direction
-
-        distance = np.linalg.norm(celestial_body_2.s0 - self.s0)
-        gravtional_direction = (celestial_body_2.s0 - self.s0) / distance
-        gravtional_force_2 = (celestial_body_2.constant / distance**2) * gravtional_direction
-
-
-
+        
         #Update velocity and position
-        self.v0 = self.v0 + gravtional_force_1 + gravtional_force_2
+        for celestial_body in list_celestials:
+            distance = np.linalg.norm(celestial_body.s0 - self.s0)
+            gravtional_direction = (celestial_body.s0 - self.s0) / distance
+            gravtional_force = (celestial_body.constant / distance**2) * gravtional_direction
+            self.v0 = self.v0 + gravtional_force
+            
+                                                                                                                
         self.s0 += self.v0
         self.rect.center = self.s0
         
