@@ -1,14 +1,17 @@
 import numpy as np
 import pygame
+from constante import *
 
 class Shooter(pygame.sprite.Sprite):
     def __init__(self):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.s0 = np.array([50, 350])
-        self.image = pygame.Surface((50, 50))
-        self.image.fill((255, 0, 0))
+        self.s0 = np.array([5, 280])
+        # self.image = pygame.Surface((50, 50))
+        # self.image.fill((255, 0, 0))
+        self.image = pygame.image.load(SHOOTER)
+        self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = pygame.Rect(self.s0[0], self.s0[1], 50, 50)
         self.points = 0
 
@@ -27,8 +30,8 @@ class Bullet(pygame.sprite.Sprite):
         
         self.v0 = np.array(v0, dtype=float)
         self.s0 = np.array(s0, dtype=float)
-        self.image = pygame.Surface((10, 10))
-        self.image.fill((0, 0, 255))
+        self.image = pygame.image.load(BULLET)
+        self.image = pygame.transform.scale(self.image, (10, 10))
         self.rect = pygame.Rect(self.s0[0], self.s0[1], 10, 10)
         
 
@@ -57,15 +60,19 @@ class Bullet(pygame.sprite.Sprite):
         return self.rect.colliderect(body.rect)
         
 
+        
+
 
 class Celestial_body(pygame.sprite.Sprite):
-    def __init__(self, s0, constant, size):
+    def __init__(self, s0, constant, size, texture):
 
         pygame.sprite.Sprite.__init__(self)
 
         self.s0 = s0
-        self.image = pygame.Surface(size)
-        self.image.fill((0, 225, 50))
+        # self.image = pygame.Surface(size)
+        # self.image.fill((0, 225, 50))
+        self.image = pygame.image.load(texture)
+        self.image = pygame.transform.scale(self.image, size)
         self.rect = pygame.Rect(self.s0[0], self.s0[1],size[0], size[1])
         self.constant = constant
 
@@ -77,8 +84,10 @@ class Target(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.s0 = s0
-        self.image = pygame.Surface(size)
-        self.image.fill((0, 100, 100))
+        # self.image = pygame.Surface(size)
+        # self.image.fill((0, 100, 100))
+        self.image = pygame.image.load(TARGET)
+        self.image = pygame.transform.scale(self.image, (60,60))
         self.rect = pygame.Rect(self.s0[0], self.s0[1], size[0], size[1])
 
     def draw(self, screen):
