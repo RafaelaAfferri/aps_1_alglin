@@ -29,7 +29,7 @@ class Bullet(pygame.sprite.Sprite):
 
         
         self.v0 = np.array(v0, dtype=float)
-        self.s0 = np.array(s0, dtype=float)
+        self.s0 = np.array(s0 + 55, dtype=float)
         self.image = pygame.image.load(BULLET)
         self.image = pygame.transform.scale(self.image, (10, 10))
         self.rect = pygame.Rect(self.s0[0], self.s0[1], 10, 10)

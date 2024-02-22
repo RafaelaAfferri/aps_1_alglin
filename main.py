@@ -83,6 +83,9 @@ class Fase_1():
         #Draw target
         self.target.draw(screen)
 
+        #Draw plataform
+        screen.blit(self.plataform, (25, 350))
+        
         #Draw points
         text_surface = self.font.render(f"Pontos", True, (255,255,255))
         screen.blit(text_surface, (10, 10))
@@ -95,8 +98,6 @@ class Fase_1():
         for bullet in self.bullet_list:
             bullet.draw(screen)
 
-        #Draw plataform
-        screen.blit(self.plataform, (25, 350))
         
 
         #Update screen
@@ -180,6 +181,9 @@ class Fase_2():
         #Draw target
         self.target.draw(screen)
 
+        #Draw plataform
+        screen.blit(self.plataform, (25, 350))
+        
         #Draw bullets
         for bullet in self.bullet_list:
             bullet.draw(screen)
@@ -191,8 +195,6 @@ class Fase_2():
             image_pontos = pygame.transform.scale(image_pontos, (10, 10))
             screen.blit(image_pontos, (10 + (i*15), 30))
 
-        #Draw plataform
-        screen.blit(self.plataform, (25, 350))
 
 
         #Update screen
